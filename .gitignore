@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+
+# C/C++ compiler output
+/build/*
+!/build/.gitkeep
+*.dSYM/
+*.o
+*.d
+*.out
+
+# Local editor files
+*.swp
+*.swo
+.vscode/ipch/
+
+# Generated compilation database
+compile_commands.json

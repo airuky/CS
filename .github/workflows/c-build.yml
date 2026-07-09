@@ -1,0 +1,28 @@
+name: Build C exercises
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Compile every C exercise
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          mkdir -p build
+
+          for source in ./*.c; do
+            name="$(basename "$source" .c)"
+            cc -std=c17 -Wall -Wextra -Wpedantic -g "$source" -o "build/$name"
+          done
